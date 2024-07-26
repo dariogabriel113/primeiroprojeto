@@ -92,7 +92,7 @@ public class Desafio {
                     exibeMenuOperacoes();
                     break;
                 default:
-                    System.out.println("Não foi possivel identificar a opção escolhida \n");
+                    System.out.println("Opção inválida \n");
             }
         }
     }
