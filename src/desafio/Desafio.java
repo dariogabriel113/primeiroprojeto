@@ -106,11 +106,18 @@ public class Desafio {
 
     public static void depositar() {
         System.out.println("Digite o valor do depósito: ");
-        BigDecimal valorAcrescimo = leitura.nextBigDecimal();
-        if (valorAcrescimo != null && valorAcrescimo.compareTo(BigDecimal.ZERO) > 0) {
-            saldo = saldo.add(valorAcrescimo);
-        } else {
+        BigDecimal valorAcrescimo = null;
+        try {
+            valorAcrescimo = leitura.nextBigDecimal();
+
+            if (valorAcrescimo != null && valorAcrescimo.compareTo(BigDecimal.ZERO) > 0) {
+                saldo = saldo.add(valorAcrescimo);
+            } else {
+                exibieMsgValorInvalido();
+            }
+        } catch (InputMismatchException inputMismatchException) {
             exibieMsgValorInvalido();
+            leitura.nextLine();
         }
 
         consultarSaldo();
