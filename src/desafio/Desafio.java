@@ -45,7 +45,7 @@ public class Desafio {
     }
 
     public static void exibieMsgValorInvalido() {
-        System.out.println("Valor inválido");
+        System.out.println("Valor inválido \n");
     }
 
     public static void extrato() {
@@ -69,7 +69,14 @@ public class Desafio {
 
         while (operacaoSelecionada != 4) {
             System.out.println("Digite a opção desejada:");
-            operacaoSelecionada = leitura.nextInt();
+
+            try {
+                operacaoSelecionada = leitura.nextInt();
+            } catch (InputMismatchException inputMismatchException) {
+                exibieMsgValorInvalido();
+                leitura.nextLine();
+                operacaoSelecionada = 1;
+            }
 
             switch (operacaoSelecionada) {
                 case 0:
