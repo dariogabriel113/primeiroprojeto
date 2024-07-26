@@ -50,7 +50,7 @@ public class Desafio {
 
     public static void extrato() {
         System.out.println("**********************************************");
-        System.out.println("Dados iniciais do cliente \n");
+        System.out.println("Dados do cliente \n");
         System.out.println("Nome:                       " + nome);
         System.out.println("Tipo de conta:              " + tipoDeConta);
         System.out.println("Saldo inicial:              " + "R$ " + String.valueOf(saldo).replace(".", ","));
@@ -135,7 +135,11 @@ public class Desafio {
         try {
             BigDecimal valorSacado = leitura.nextBigDecimal();
             if (valorSacado != null && valorSacado.compareTo(BigDecimal.ZERO) > 0) {
-                saldo = saldo.subtract(valorSacado);
+                if (saldo.compareTo(valorSacado) >= 0) {
+                    saldo = saldo.subtract(valorSacado);
+                } else {
+                    System.out.println("Saldo Insuficiente");
+                }
             } else {
                 exibieMsgValorInvalido();
             }
