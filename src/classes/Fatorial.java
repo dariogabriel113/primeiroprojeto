@@ -21,8 +21,8 @@ public class Fatorial {
                 numerosEncontrados.add(i);
             }
 
-            String sequencia = numerosEncontrados.stream().map(String::valueOf).collect(Collectors.joining("x", "", ""));
-            System.out.println("!" + numeroDigitado + " = " + sequencia + " = " + resultado);
+            String sequencia = !numerosEncontrados.isEmpty() ? " = " + numerosEncontrados.stream().map(String::valueOf).collect(Collectors.joining("x", "", "")) : "";
+            System.out.println("!" + numeroDigitado + sequencia + " = " + resultado);
         } else {
             System.out.println("Número inválido");
         }
