@@ -11,9 +11,12 @@ public class Desafio {
     static BigDecimal saldo = BigDecimal.ZERO;
 
     public static void main(String[] args) {
+        inicializaConta();
+        extrato();
+        chamaMenuOperacoes();
+    }
 
-        int operacaoSelecionada = 0;
-
+    public static void inicializaConta() {
         System.out.println("Inicializando conta");
 
         System.out.println("Digite seu nome");
@@ -21,15 +24,21 @@ public class Desafio {
 
         System.out.println("Digite o saldo inicial");
         saldo = leitura.nextBigDecimal();
+    }
 
+    public static void extrato() {
         System.out.println("**********************************************");
         System.out.println("Dados iniciais do cliente \n");
         System.out.println("Nome:                       " + nome);
         System.out.println("Tipo de conta:              " + tipoDeConta);
         System.out.println("Saldo inicial:              " + "R$ " + String.valueOf(saldo).replace(".", ","));
         System.out.println("********************************************** \n");
+    }
 
+    public static void chamaMenuOperacoes() {
+        int operacaoSelecionada = 0;
         System.out.println("Operações \n");
+        System.out.println("0- Extrato");
         System.out.println("1- Consultar saldo");
         System.out.println("2- Receber valor");
         System.out.println("3- Transferir valor");
@@ -41,6 +50,9 @@ public class Desafio {
             operacaoSelecionada = leitura.nextInt();
 
             switch (operacaoSelecionada) {
+                case 0:
+                    extrato();
+                    break;
                 case 1:
                     consultarSaldo();
                     break;
