@@ -49,6 +49,7 @@ public class Desafio {
                     break;
                 case 3:
                     sacar();
+                    break;
                 case 4:
                     System.out.println("Sair");
                     break;
