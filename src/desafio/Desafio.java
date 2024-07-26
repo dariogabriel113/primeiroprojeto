@@ -59,16 +59,10 @@ public class Desafio {
 
     public static void chamaMenuOperacoes() {
         int operacaoSelecionada = 0;
-        System.out.println("Operações \n");
-        System.out.println("0- Extrato");
-        System.out.println("1- Consultar saldo");
-        System.out.println("2- Receber valor");
-        System.out.println("3- Transferir valor");
-        System.out.println("4- Sair");
-        System.out.println();
+        exibeMenuOperacoes();
 
         while (operacaoSelecionada != 4) {
-            System.out.println("Digite a opção desejada:");
+            System.out.println("Digite a opção desejada, ou digite (5) para ver as opções novamente:");
 
             try {
                 operacaoSelecionada = leitura.nextInt();
@@ -94,10 +88,23 @@ public class Desafio {
                 case 4:
                     System.out.println("Sair");
                     break;
+                case 5:
+                    exibeMenuOperacoes();
+                    break;
                 default:
                     System.out.println("Não foi possivel identificar a opção escolhida \n");
             }
         }
+    }
+
+    public static void exibeMenuOperacoes() {
+        System.out.println("Operações \n");
+        System.out.println("0- Extrato");
+        System.out.println("1- Consultar saldo");
+        System.out.println("2- Receber valor");
+        System.out.println("3- Transferir valor");
+        System.out.println("4- Sair");
+        System.out.println();
     }
 
     public static void consultarSaldo() {
