@@ -106,9 +106,8 @@ public class Desafio {
 
     public static void depositar() {
         System.out.println("Digite o valor do depósito: ");
-        BigDecimal valorAcrescimo = null;
         try {
-            valorAcrescimo = leitura.nextBigDecimal();
+            BigDecimal valorAcrescimo = leitura.nextBigDecimal();
 
             if (valorAcrescimo != null && valorAcrescimo.compareTo(BigDecimal.ZERO) > 0) {
                 saldo = saldo.add(valorAcrescimo);
