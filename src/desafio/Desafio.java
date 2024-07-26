@@ -124,12 +124,19 @@ public class Desafio {
 
     public static void sacar() {
         System.out.println("Digite o valor sacado: ");
-        BigDecimal valorSacado = leitura.nextBigDecimal();
-        if (valorSacado != null && valorSacado.compareTo(BigDecimal.ZERO) > 0) {
-            saldo = saldo.subtract(valorSacado);
-        } else {
+
+        try {
+            BigDecimal valorSacado = leitura.nextBigDecimal();
+            if (valorSacado != null && valorSacado.compareTo(BigDecimal.ZERO) > 0) {
+                saldo = saldo.subtract(valorSacado);
+            } else {
+                exibieMsgValorInvalido();
+            }
+        } catch (InputMismatchException inputMismatchException) {
             exibieMsgValorInvalido();
+            leitura.nextLine();
         }
+
 
         consultarSaldo();
     }
