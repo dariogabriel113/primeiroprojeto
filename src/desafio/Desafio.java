@@ -1,6 +1,8 @@
 package desafio;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Desafio {
@@ -11,19 +13,39 @@ public class Desafio {
     static BigDecimal saldo = BigDecimal.ZERO;
 
     public static void main(String[] args) {
-        inicializaConta();
-        extrato();
-        chamaMenuOperacoes();
+        if (inicializaConta()) {
+            extrato();
+            chamaMenuOperacoes();
+        } else {
+            System.out.println("Reinicie o processo");
+        }
     }
 
-    public static void inicializaConta() {
-        System.out.println("Inicializando conta");
+    public static boolean inicializaConta() {
+        System.out.println("Inicializando conta \n");
 
         System.out.println("Digite seu nome");
         nome = leitura.nextLine();
 
         System.out.println("Digite o saldo inicial");
-        saldo = leitura.nextBigDecimal();
+        try {
+            BigDecimal valorInicial = leitura.nextBigDecimal();
+            if (valorInicial != null && valorInicial.compareTo(BigDecimal.ZERO) >= 0) {
+                saldo = valorInicial.setScale(2, RoundingMode.HALF_DOWN);
+                return true;
+            } else {
+                exibieMsgValorInvalido();
+            }
+        } catch (InputMismatchException inputMismatchException) {
+            leitura.nextLine();
+            exibieMsgValorInvalido();
+        }
+
+        return false;
+    }
+
+    public static void exibieMsgValorInvalido() {
+        System.out.println("Valor inválido");
     }
 
     public static void extrato() {
@@ -81,7 +103,7 @@ public class Desafio {
         if (valorAcrescimo != null && valorAcrescimo.compareTo(BigDecimal.ZERO) > 0) {
             saldo = saldo.add(valorAcrescimo);
         } else {
-            System.out.println("Valor inválido");
+            exibieMsgValorInvalido();
         }
 
         consultarSaldo();
@@ -93,7 +115,7 @@ public class Desafio {
         if (valorSacado != null && valorSacado.compareTo(BigDecimal.ZERO) > 0) {
             saldo = saldo.subtract(valorSacado);
         } else {
-            System.out.println("Valor inválido");
+            exibieMsgValorInvalido();
         }
 
         consultarSaldo();
